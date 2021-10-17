@@ -2,9 +2,9 @@
 
 1. 参考代码：
 
-   https://github.com/rbgirshick/fast-rcnn/tree/master（caffe），
+   https://github.com/rbgirshick/fast-rcnn/tree/master （caffe），
 
-   https://github.com/gary1346aa/Fast-RCNN-Object-Detection-Pytorch/blob/master/README.ipynb（pytorch）. 
+   https://github.com/gary1346aa/Fast-RCNN-Object-Detection-Pytorch/blob/master/README.ipynb （pytorch）. 
 
    
 
