@@ -132,7 +132,8 @@ def train_epoch(model, optimizer, run_set, is_val=False):
 
 def start_training(n_epoch=5):
     rcnn = RCNN()
-    optimizer = paddle.optimizer.Adam(learning_rate=0.0001,
+    lr_scheduler = paddle.optimizer.lr.StepDecay(0.001, step_size=30000, gamma=0.1)
+    optimizer = paddle.optimizer.SGD(learning_rate=lr_scheduler, weight_decay=0.0005,
         parameters=rcnn.parameters())
     for i in range(n_epoch):
         print(f'===========================================')

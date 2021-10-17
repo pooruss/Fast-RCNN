@@ -190,9 +190,13 @@ def testdt_to_npz(cfg):
 # test
 if __name__ == "__main__":
     # for Train
-    traindt_to_npz(cfg,3)
-
-    # traindt_to_npz(cfg,4)
+    #traindt_to_npz(cfg,3)
+    np0 = np.load('./dataset/train0.npz')
+    np1 = np.load('./dataset/train1.npz')
+    np2 = np.load('./dataset/train2.npz')
+    np3 = np.load('./dataset/train3.npz')
+    npall = [np0,np1,np2,np3]
+    np.savez('./dataset/train.npz',npall)
 
     # #for Test
     # testdt_to_npz(cfg)
