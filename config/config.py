@@ -4,13 +4,10 @@ cfg = dict(
         optimizer_config=dict(type='Optimizerhook', grad_clip=dict(max_norm=35, norm_type=2)),  # 梯度均衡参数
         # learning policy
         lr_strategy=dict(
-            type='Step',  # 优化策略
+            type='StepDecay',  # 优化策略
             gamma=0.1,
-            warmup='linear',  # 初始的学习率增加的策略，linear为线性增加
-            warmup_iters=500,  # 在初始的500次迭代中学习率逐渐增加
-            warmup_ratio=1.0 / 3,  # 起始的学习率
-            step=[8, 11])  # 在第8和11个epoch时降低学习率
-
+            base_lr=0.001, 
+            step_size=30000
     ),
 
     data_cfg=dict(
