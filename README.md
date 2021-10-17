@@ -1,12 +1,20 @@
 # Fast-RCNN
-fast-rcnn using paddle on voc dataset
-# Fast-RCNN
 
-1. 参考代码https://github.com/rbgirshick/fast-rcnn/tree/master，https://github.com/gary1346aa/Fast-RCNN-Object-Detection-Pytorch/blob/master/README.ipynb
+1. 参考代码：
 
-2. 由于所给原参考代码使用的是caffe框架，复现难度有所增加，目前网上能找到基于pytorch复现只有一个不完整不规范版本。考虑到相关打卡和对齐方法都是针对torch和paddle，个人对caffe不熟悉，所以没有去跑通caffe代码，而是根据此不完整pytorch版本进行补充修改完善。
+   https://github.com/rbgirshick/fast-rcnn/tree/master（caffe），
 
-   对齐网络层：vgg16、roipooling、两个全连接层、损失函数：
+   https://github.com/gary1346aa/Fast-RCNN-Object-Detection-Pytorch/blob/master/README.ipynb（pytorch）. 
+
+   
+
+2. 对齐打卡
+
+   ​	由于所给原参考代码使用的是caffe框架，复现难度有所增加，考虑到相关打卡和对齐方法都是针对torch和paddle，目前也还未有caffe与paddle的对应接口教程，个人对caffe也不熟悉，所以没有去跑通caffe代码。**目前网上包括github、paper with code等能找到基于pytorch复现fast-rcnn只有个别不完整不规范版本**，**所以此复现无法涉及五个打卡点diff的计算。**另外，对于个人自己找的相对较完整，但不规范代码https://github.com/gary1346aa/Fast-RCNN-Object-Detection-Pytorch/blob/master/README.ipynb，群里老师也未给予确定性的可根据此代码作为参考打卡点代码的回复。
+
+   ​	个人根据阅读论文、分析caffe源码和相关torch代码，在paddle上结构层面上尽量对齐：
+
+   **模型结构**与**损失函数**：
 
    ```
    aistudio@jupyter-585642-2443378:~/work/fast-rcnn/models$ python rcnn.py
@@ -81,9 +89,31 @@ fast-rcnn using paddle on voc dataset
    )
    ```
 
+   **验证/测试集数据读取对齐**：
+
+   ​	未找到相关torch版本的数据读取，无法对齐。
+
+   **评估指标对齐：**
+
+   ​	未找到相关torch版本的评估指标实现，无法对齐。
+
+   **反向对齐与训练对齐：**
+
+   ​	未找到相关torch版本的完整模型代码，无法对齐。
+
    
 
-3. 由于国内暂时无法从dropbox下载voc数据集的selectivesearch数据，使用cv2的switchToSelectiveSearchFast()生成rois，并对voc数据进行预处理，结果存储为.npz文件
+3. selectivesearch候选框：
 
-4. 
+   ​	由于国内暂时无法从dropbox下载voc数据集的selectivesearch数据，使用cv2的switchToSelectiveSearchFast()生成rois，并对voc数据进行预处理，结果存储为.npz文件。训练时直接读取npz文件作为训练/验证/测试数据。目前各基于caffe复现的代码都是直接从dropbox直接下载selectivsearch.mat作为候选框构建训练数据。
+
+
+
+4. 总结：
+
+​	目前模型已可进行正常完整的训练，使用的是voc2012trainval数据，自己生成的selectivsearch候选框。尚未对训练结果进行测试评估。也由于没有某份torch版本源代码能提供一个参考去对齐（个人自己找的相对完整代码未得到老师的许可），所以对自己的复现工作进度比较模糊，质量可能也不太令人满意。
+
+
+
+待完善：数据的读取方式、selectivesearch数据的获取、模型各参数对齐调整、权重初始化、结果评估evaluate.py、
 
