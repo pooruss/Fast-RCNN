@@ -39,7 +39,7 @@ class VGG(nn.Layer):
         net.append(nn.Conv2D(in_channels=256, out_channels=256, kernel_size=3, padding=1, stride=1))
         net.append(nn.BatchNorm2D(256))
         net.append(nn.ReLU())
-        #net.append(nn.MaxPool2D(kernel_size=2, stride=2))
+        net.append(nn.MaxPool2D(kernel_size=2, stride=2))
 
         # block 4
         net.append(nn.Conv2D(in_channels=256, out_channels=512, kernel_size=3, padding=1, stride=1))
@@ -51,7 +51,7 @@ class VGG(nn.Layer):
         net.append(nn.Conv2D(in_channels=512, out_channels=512, kernel_size=3, padding=1, stride=1))
         net.append(nn.BatchNorm2D(512))
         net.append(nn.ReLU())
-        #net.append(nn.MaxPool2D(kernel_size=2, stride=2))
+        net.append(nn.MaxPool2D(kernel_size=2, stride=2))
 
         # block 5
         net.append(nn.Conv2D(in_channels=512, out_channels=512, kernel_size=3, padding=1, stride=1))
@@ -63,7 +63,7 @@ class VGG(nn.Layer):
         net.append(nn.Conv2D(in_channels=512, out_channels=512, kernel_size=3, padding=1, stride=1))
         net.append(nn.BatchNorm2D(512))
         net.append(nn.ReLU())
-        #net.append(nn.MaxPool2D(kernel_size=2, stride=2))
+        net.append(nn.MaxPool2D(kernel_size=2, stride=2))
 
         # add net into class property
         self.extract_feature = nn.Sequential(*net)
@@ -84,8 +84,8 @@ class VGG(nn.Layer):
         return feature
 
 # test
-# if __name__ == "__main__":
-#     x = paddle.rand(shape=(8, 3, 224, 224))
-#     vgg = VGG(num_classes=80)
-#     out = vgg(x)
-    #print(out.shape)   (8,80)
+if __name__ == "__main__":
+    x = paddle.rand(shape=(1, 3, 224, 224))
+    vgg = VGG(num_classes=21)
+    out = vgg(x)
+    print(out.shape)   #(1,21)
